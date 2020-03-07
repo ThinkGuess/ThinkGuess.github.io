@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>learnGo</title>
+<title>Golang当中如何获取两个时间的差值 | learnGo</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,8 +18,12 @@
 
 
 
-    <meta name="description" content="记录学习go的每一步">
-    
+    <meta name="description" content="我们经常需要比较两个时间的差值，在go语言当中，如果想要比较两个时间点的差值，可以采用下面的方式获取。
+我们以当前时间为例，首先来获取当前时间。
+now := time.now() 
+
+然后我们在来设置一下时区，避免因为时区的原因导致计算错..." />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div id="app" class="main">
@@ -89,49 +93,55 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://ThinkGuess.github.io/post/golang-dang-zhong-ru-he-huo-qu-liang-ge-shi-jian-de-chai-zhi/">
-                  <h2 class="post-title">Golang当中如何获取两个时间的差值</h2>
-                </a>
-                <div class="post-date">
-                  2020-03-07
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
+          <div class="post-detail">
+            <h2 class="post-title">Golang当中如何获取两个时间的差值</h2>
+            <div class="post-date">2020-03-07</div>
+            
+            <div class="post-content" v-pre>
+              <p>我们经常需要比较两个时间的差值，在go语言当中，如果想要比较两个时间点的差值，可以采用下面的方式获取。</p>
+<p>我们以当前时间为例，首先来获取当前时间。</p>
+<pre><code class="language-golang">now := time.now() 
+</code></pre>
+<p>然后我们在来设置一下时区，避免因为时区的原因导致计算错误。</p>
+<pre><code class="language-golang">loc,err := time.LoadLocation(&quot;Asia/Shanghai&quot;)
+if err != nil {
+    fmt.Println(&quot;时区设置错误&quot;,err)
+    return
+}
+</code></pre>
+<p>LoadLocation() 方法会返回一个Location的指针，可以在后面用的到。</p>
+<p>下一步是按照指定格式设置时间。</p>
+<pre><code class="language-golang">timeObj,err := time.ParseInLocation(&quot;2006-01-02 15:04:05&quot;, &quot;2020-03-08 19:36:00&quot;, loc)
+if err != nil {
+    fmt.Println(&quot;解析错误:&quot;,err)
+    return
+}
+</code></pre>
+<blockquote>
+<p>第三个参数就是在上一步获取的Location指针对象。</p>
+</blockquote>
+<p>最后再通过Sub()方法来计算两个时间点相差时间。</p>
+<pre><code class="language-golang">// 计算两个时间的间隔
+ret := timeObj.Sub(now)
+fmt.Println(ret)
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
                 <a href="https://ThinkGuess.github.io/post/hello-gridea/">
-                  <h2 class="post-title">Hello Gridea</h2>
+                  <h3 class="post-title">
+                    Hello Gridea
+                  </h3>
                 </a>
-                <div class="post-date">
-                  2018-12-12
-                </div>
-                <div class="post-abstract">
-                  <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-
-                </div>
               </div>
-              
-                <a class="right" href="https://ThinkGuess.github.io/post/hello-gridea/">
-                  <div class="feature-container" style="background-image: url('https://ThinkGuess.github.io/post-images/hello-gridea.png')">
-                  </div>
-                </a>
-              
-            </article>
-          
+            
 
-          <div class="pagination-container">
-  
-  
-</div>
+            
+
+          </div>
 
         </div>
       </div>
