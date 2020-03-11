@@ -1,205 +1,196 @@
+<!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
-<title>learnGo</title>
-<meta name="description" content="记录学习go的每一步">
+<title>文章归档 | learnGo</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://ThinkGuess.github.io/favicon.ico?v=1583942900165">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="shortcut icon" href="https://ThinkGuess.github.io/favicon.ico?v=1583943056199">
 <link rel="stylesheet" href="https://ThinkGuess.github.io/styles/main.css">
 
 
 
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 
 
+    <meta name="description" content="记录学习go的每一步">
   </head>
   <body>
     <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://ThinkGuess.github.io">
-        <img class="avatar" src="https://ThinkGuess.github.io/images/avatar.png?v=1583942900165" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://ThinkGuess.github.io">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://ThinkGuess.github.io">
+        <img src="https://ThinkGuess.github.io/images/avatar.png?v=1583943056199" class="site-logo">
         <h1 class="site-title">learnGo</h1>
       </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
+    <div>
       
         
-          <a href="/" class="menu purple-link">
+          <a href="/" class="site-nav">
             首页
           </a>
         
       
         
-          <a href="/archives" class="menu purple-link">
+          <a href="/archives" class="site-nav">
             归档
           </a>
         
       
         
-          <a href="/tags" class="menu purple-link">
+          <a href="/tags" class="site-nav">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="menu purple-link">
+          <a href="/post/about" class="site-nav">
             关于
           </a>
         
       
     </div>
   </div>
-</transition>
-
-
-        <div class="content-container">
-          
-          
-
-<div class="archives-container">
-  
-    <h2 class="year">2020</h2>
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-        <article class="post">
-          <a href="https://ThinkGuess.github.io/go-yu-yan-zhi-han-shu/">
-            <h2 class="post-title">
-              go语言之函数
-              <small>2020-03-11</small>
-            </h2>
-          </a>
-        </article>
+        
       
-    
+        
       
-        <article class="post">
-          <a href="https://ThinkGuess.github.io/go-yu-yan-zhi-chang-liang/">
-            <h2 class="post-title">
-              go语言之常量
-              <small>2020-03-11</small>
-            </h2>
-          </a>
-        </article>
+        
       
-    
+        
       
-        <article class="post">
-          <a href="https://ThinkGuess.github.io/go-yu-yan-dang-zhong-shu-ju-lei-xing-zhuan-huan/">
-            <h2 class="post-title">
-              go语言当中数据类型转换
-              <small>2020-03-11</small>
-            </h2>
-          </a>
-        </article>
+        
       
-    
-      
-        <article class="post">
-          <a href="https://ThinkGuess.github.io/go-nei-jian-bian-liang-lei-xing/">
-            <h2 class="post-title">
-              go内建变量类型
-              <small>2020-03-11</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://ThinkGuess.github.io/go-yu-yan-zhi-bian-liang/">
-            <h2 class="post-title">
-              go语言之变量
-              <small>2020-03-11</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://ThinkGuess.github.io/go-yu-yan-de-yi-lai-guan-li/">
-            <h2 class="post-title">
-              go语言的依赖管理
-              <small>2020-03-10</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://ThinkGuess.github.io/go-she-zhi-proxy/">
-            <h2 class="post-title">
-              go 设置proxy
-              <small>2020-03-10</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://ThinkGuess.github.io/golang-dang-zhong-ru-he-huo-qu-liang-ge-shi-jian-de-chai-zhi/">
-            <h2 class="post-title">
-              Golang当中如何获取两个时间的差值
-              <small>2020-03-07</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-  
+    </div>
+    <div class="site-description">
+      记录学习go的每一步
+    </div>
+    <div class="site-footer">
+      Powered by ThinkGuess | <a class="rss" href="https://ThinkGuess.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
 </div>
 
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          
+
+          <h2 class="archives-title">文章归档</h2>
+          <div class="archives-container">
+            
+              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2020</h2>
+              
+                
+                  <article class="post">
+                    <a href="https://ThinkGuess.github.io/go-yu-yan-zhi-han-shu/">
+                      <h2 class="post-title">
+                        go语言之函数
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://ThinkGuess.github.io/go-yu-yan-zhi-chang-liang/">
+                      <h2 class="post-title">
+                        go语言之常量
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://ThinkGuess.github.io/go-yu-yan-dang-zhong-shu-ju-lei-xing-zhuan-huan/">
+                      <h2 class="post-title">
+                        go语言当中数据类型转换
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://ThinkGuess.github.io/go-nei-jian-bian-liang-lei-xing/">
+                      <h2 class="post-title">
+                        go内建变量类型
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://ThinkGuess.github.io/go-yu-yan-zhi-bian-liang/">
+                      <h2 class="post-title">
+                        go语言之变量
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://ThinkGuess.github.io/go-yu-yan-de-yi-lai-guan-li/">
+                      <h2 class="post-title">
+                        go语言的依赖管理
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://ThinkGuess.github.io/go-she-zhi-proxy/">
+                      <h2 class="post-title">
+                        go 设置proxy
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://ThinkGuess.github.io/golang-dang-zhong-ru-he-huo-qu-liang-ge-shi-jian-de-chai-zhi/">
+                      <h2 class="post-title">
+                        Golang当中如何获取两个时间的差值
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+            
+          </div>
+
+          <div class="pagination-container">
+  
+  
+</div>
 
         </div>
-
-        <div class="site-footer">
-  <div class="slogan">记录学习go的每一步</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by ThinkGuess | <a class="rss" href="https://ThinkGuess.github.io/atom.xml" target="_blank">RSS</a>
-</div>
-
-
       </div>
-      <script type="application/javascript">
+    </div>
 
-hljs.initHighlightingOnLoad()
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
 
 var app = new Vue({
   el: '#app',
@@ -211,8 +202,14 @@ var app = new Vue({
 </script>
 
 
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
 
 
-    </div>
+
+
+
   </body>
 </html>
