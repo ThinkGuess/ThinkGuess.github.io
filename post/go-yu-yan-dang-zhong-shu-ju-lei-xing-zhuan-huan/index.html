@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>go 设置proxy | learnGo</title>
+<title>go语言当中数据类型转换 | learnGo</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,11 +18,13 @@
 
 
 
-    <meta name="description" content="在新版本的go当中，引入了proxy的概念，通过这个代理，可以帮助我们解决go包下载的问题。
-例如在未设置前，如果想要通过vscode来安装go需要的包，是非常麻烦的，但是现在有了proxy之后，可以非常方便的来下载相应的内容。
+    <meta name="description" content="在一些编程语言里面，存在着隐式类型转换，例如JavaScript。
+var a = 10 
+var b = &quot;a&quot;
+console.log(a + b) // 10a
 
-下面来说..." />
-    <meta name="keywords" content="go proxy,go环境配置,代理" />
+上面的js代码在执行的时候发生了隐式类型转换，将n..." />
+    <meta name="keywords" content="go数据类型转换" />
   </head>
   <body>
     <div id="app" class="main">
@@ -93,50 +95,53 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">go 设置proxy</h2>
-            <div class="post-date">2020-03-10</div>
+            <h2 class="post-title">go语言当中数据类型转换</h2>
+            <div class="post-date">2020-03-11</div>
             
-              <div class="feature-container" style="background-image: url('https://ThinkGuess.github.io/post-images/go-she-zhi-proxy.jpeg')">
+              <div class="feature-container" style="background-image: url('http://h1.ioliu.cn/bing/CubsEmerge_ZH-CN1697031244_1920x1080.jpg')">
               </div>
             
             <div class="post-content" v-pre>
-              <p>在新版本的go当中，引入了<code>proxy</code>的概念，通过这个代理，可以帮助我们解决go包下载的问题。</p>
-<p>例如在未设置前，如果想要通过vscode来安装go需要的包，是非常麻烦的，但是现在有了proxy之后，可以非常方便的来下载相应的内容。</p>
+              <p>在一些编程语言里面，存在着隐式类型转换，例如JavaScript。</p>
+<pre><code class="language-javascript">var a = 10 
+var b = &quot;a&quot;
+console.log(a + b) // 10a
+</code></pre>
+<p>上面的js代码在执行的时候发生了隐式类型转换，将number类型的变量a自动转换为了字符串，和字符串类型的b执行相加后，发生了字符串的拼接。</p>
+<p>但是这种隐式的类型转换，在go语言当中是不存在的。</p>
 <!-- more -->
-<p>下面来说一下具体的配置，首先，需要设置好<code>GOPATH</code>，在环境变量当中，添加<code>GOPATH</code>相关内容。</p>
-<figure data-type="image" tabindex="1"><img src="https://myblogxingzhou.oss-cn-qingdao.aliyuncs.com/20200310162141.png" alt="" loading="lazy"></figure>
-<p>设置完成之后，再来开启<code>GoModule</code>。</p>
-<p>打开终端，执行下面的命令：</p>
-<pre><code class="language-golang">go env -w GO111MODULE=on
+<p>go必要的情况下，允许将一个类型的值转换为另外一个类型的值。但是所有的类型转换都必须显示的声明出来。</p>
+<p>示例:</p>
+<pre><code class="language-go">valTypeB = TypeB(valTypeA)
 </code></pre>
-<blockquote>
-<p>如果后面不需要使用,可以再将值设置为off。</p>
-</blockquote>
-<p>最后再来设置一下proxy代理。</p>
-<pre><code class="language-golang">go env -w GOPROXY=https://goproxy.cn,direct
+<p>类型B的值 = 类型B(类型A的值)</p>
+<p>例如下面的例子：</p>
+<pre><code class="language-go">// 定义一个变量
+var s1 string = &quot;hello,world&quot;
+var a = []byte(s1) // 将字符串转换为数组
+var n1 float64 = 1.0
+var b int = int(n1) // 将float64转换为整型
 </code></pre>
-<p>如果你的操作系统是mac 或则Linux，可以采用下面的方式进行设置。</p>
-<pre><code class="language-go">$ export GO111MODULE=on
-$ export GOPROXY=https://goproxy.cn
+<p>类型转换只能在定义正确的情况下转换成功，例如从一个取值范围较小的类型转换到一个取值范围较大的类型（将 int16 转换为 int32）。当从一个取值范围较大的类型转换到取值范围较小的类型时（将 int32 转换为 int16 或将 float32 转换为 int），会发生精度丢失（截断）的情况。</p>
+<p>只有相同底层类型的变量之间可以进行相互转换（如将 int16 类型转换成 int32 类型），不同底层类型的变量相互转换时会引发编译错误（如将 bool 类型转换为 int 类型）：</p>
+<pre><code class="language-go">// int 32 最大值：2147483647
+var n1 int64 = 2147483648
+var n2 int32 = int32(n1)
+fmt.Println(n2) // -2147483648
 </code></pre>
-<blockquote>
-<p>具体细节，可以参考https://goproxy.cn/。</p>
-</blockquote>
+<pre><code class="language-go">// 底层不同的数据进行转换
+var b1 bool = true
+var n1 int = int(b1)
+fmt.Println(n1) // cannot convert b1 (type bool) to type int
+
+</code></pre>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://ThinkGuess.github.io/tag/X6hy0DqMW/" class="tag">
-                    go proxy
-                  </a>
-                
-                  <a href="https://ThinkGuess.github.io/tag/EQknKw8H0s/" class="tag">
-                    go环境配置
-                  </a>
-                
-                  <a href="https://ThinkGuess.github.io/tag/AOn4kkVIDH/" class="tag">
-                    代理
+                  <a href="https://ThinkGuess.github.io/tag/EgC3WbpQB/" class="tag">
+                    go数据类型转换
                   </a>
                 
               </div>
@@ -144,9 +149,9 @@ $ export GOPROXY=https://goproxy.cn
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://ThinkGuess.github.io/post/golang-dang-zhong-ru-he-huo-qu-liang-ge-shi-jian-de-chai-zhi/">
+                <a href="https://ThinkGuess.github.io/post/go-nei-jian-bian-liang-lei-xing/">
                   <h3 class="post-title">
-                    Golang当中如何获取两个时间的差值
+                    go内建变量类型
                   </h3>
                 </a>
               </div>
