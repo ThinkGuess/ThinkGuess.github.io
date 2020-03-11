@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ThinkGuess.github.io</id>
     <title>learnGo</title>
-    <updated>2020-03-11T14:32:12.577Z</updated>
+    <updated>2020-03-11T16:03:28.695Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ThinkGuess.github.io"/>
     <link rel="self" href="https://ThinkGuess.github.io/atom.xml"/>
@@ -11,9 +11,22 @@
     <icon>https://ThinkGuess.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, learnGo</rights>
     <entry>
+        <title type="html"><![CDATA[go语言之函数]]></title>
+        <id>https://ThinkGuess.github.io/go-yu-yan-zhi-han-shu/</id>
+        <link href="https://ThinkGuess.github.io/go-yu-yan-zhi-han-shu/">
+        </link>
+        <updated>2020-03-11T14:36:14.000Z</updated>
+        <summary type="html"><![CDATA[<p>一般来说，函数是组织好的、可以重复使用、用来实现单一功能或者相互关联功能的代码段，可以提高应用的模块性以及代码的复用性。</p>
+<p>在go语言当中支持普通函数、匿名函数以及闭包函数。从设计上对函数进行了优化和改进，从而让函数使用起来更加的方便。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>一般来说，函数是组织好的、可以重复使用、用来实现单一功能或者相互关联功能的代码段，可以提高应用的模块性以及代码的复用性。</p>
+<p>在go语言当中支持普通函数、匿名函数以及闭包函数。从设计上对函数进行了优化和改进，从而让函数使用起来更加的方便。</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[go语言之常量]]></title>
-        <id>https://ThinkGuess.github.io/post/go-yu-yan-zhi-chang-liang/</id>
-        <link href="https://ThinkGuess.github.io/post/go-yu-yan-zhi-chang-liang/">
+        <id>https://ThinkGuess.github.io/go-yu-yan-zhi-chang-liang/</id>
+        <link href="https://ThinkGuess.github.io/go-yu-yan-zhi-chang-liang/">
         </link>
         <updated>2020-03-11T14:23:18.000Z</updated>
         <summary type="html"><![CDATA[<p>在go语言当中，不会改变的数据被称之为常量，通过关键字<code>const</code>来声明。</p>
@@ -25,8 +38,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[go语言当中数据类型转换]]></title>
-        <id>https://ThinkGuess.github.io/post/go-yu-yan-dang-zhong-shu-ju-lei-xing-zhuan-huan/</id>
-        <link href="https://ThinkGuess.github.io/post/go-yu-yan-dang-zhong-shu-ju-lei-xing-zhuan-huan/">
+        <id>https://ThinkGuess.github.io/go-yu-yan-dang-zhong-shu-ju-lei-xing-zhuan-huan/</id>
+        <link href="https://ThinkGuess.github.io/go-yu-yan-dang-zhong-shu-ju-lei-xing-zhuan-huan/">
         </link>
         <updated>2020-03-11T14:14:36.000Z</updated>
         <summary type="html"><![CDATA[<p>在一些编程语言里面，存在着隐式类型转换，例如JavaScript。</p>
@@ -48,8 +61,8 @@ console.log(a + b) // 10a
     </entry>
     <entry>
         <title type="html"><![CDATA[go内建变量类型]]></title>
-        <id>https://ThinkGuess.github.io/post/go-nei-jian-bian-liang-lei-xing/</id>
-        <link href="https://ThinkGuess.github.io/post/go-nei-jian-bian-liang-lei-xing/">
+        <id>https://ThinkGuess.github.io/go-nei-jian-bian-liang-lei-xing/</id>
+        <link href="https://ThinkGuess.github.io/go-nei-jian-bian-liang-lei-xing/">
         </link>
         <updated>2020-03-11T09:10:57.000Z</updated>
         <summary type="html"><![CDATA[<p>在go语言当中，存在着很多的内建变量类型，下面来具体说明。</p>
@@ -59,8 +72,8 @@ console.log(a + b) // 10a
     </entry>
     <entry>
         <title type="html"><![CDATA[go语言之变量]]></title>
-        <id>https://ThinkGuess.github.io/post/go-yu-yan-zhi-bian-liang/</id>
-        <link href="https://ThinkGuess.github.io/post/go-yu-yan-zhi-bian-liang/">
+        <id>https://ThinkGuess.github.io/go-yu-yan-zhi-bian-liang/</id>
+        <link href="https://ThinkGuess.github.io/go-yu-yan-zhi-bian-liang/">
         </link>
         <updated>2020-03-11T02:58:04.000Z</updated>
         <summary type="html"><![CDATA[<p>在go语言中，声明一个变量格式如下:</p>
@@ -76,8 +89,8 @@ console.log(a + b) // 10a
     </entry>
     <entry>
         <title type="html"><![CDATA[go语言的依赖管理]]></title>
-        <id>https://ThinkGuess.github.io/post/go-yu-yan-de-yi-lai-guan-li/</id>
-        <link href="https://ThinkGuess.github.io/post/go-yu-yan-de-yi-lai-guan-li/">
+        <id>https://ThinkGuess.github.io/go-yu-yan-de-yi-lai-guan-li/</id>
+        <link href="https://ThinkGuess.github.io/go-yu-yan-de-yi-lai-guan-li/">
         </link>
         <updated>2020-03-10T08:38:41.000Z</updated>
         <summary type="html"><![CDATA[<p>当我们在进行go的开发的时候，往往需要很多的第三方的包，通过使用第三方的包来提高我们的开发速度，当我们最后在<code>go build</code>后，会将这些包打包到一起。</p>
@@ -89,8 +102,8 @@ console.log(a + b) // 10a
     </entry>
     <entry>
         <title type="html"><![CDATA[go 设置proxy]]></title>
-        <id>https://ThinkGuess.github.io/post/go-she-zhi-proxy/</id>
-        <link href="https://ThinkGuess.github.io/post/go-she-zhi-proxy/">
+        <id>https://ThinkGuess.github.io/go-she-zhi-proxy/</id>
+        <link href="https://ThinkGuess.github.io/go-she-zhi-proxy/">
         </link>
         <updated>2020-03-10T08:17:00.000Z</updated>
         <summary type="html"><![CDATA[<p>在新版本的go当中，引入了<code>proxy</code>的概念，通过这个代理，可以帮助我们解决go包下载的问题。</p>
@@ -102,8 +115,8 @@ console.log(a + b) // 10a
     </entry>
     <entry>
         <title type="html"><![CDATA[Golang当中如何获取两个时间的差值]]></title>
-        <id>https://ThinkGuess.github.io/post/golang-dang-zhong-ru-he-huo-qu-liang-ge-shi-jian-de-chai-zhi/</id>
-        <link href="https://ThinkGuess.github.io/post/golang-dang-zhong-ru-he-huo-qu-liang-ge-shi-jian-de-chai-zhi/">
+        <id>https://ThinkGuess.github.io/golang-dang-zhong-ru-he-huo-qu-liang-ge-shi-jian-de-chai-zhi/</id>
+        <link href="https://ThinkGuess.github.io/golang-dang-zhong-ru-he-huo-qu-liang-ge-shi-jian-de-chai-zhi/">
         </link>
         <updated>2020-03-07T11:45:38.000Z</updated>
     </entry>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>go语言之常量 | learnGo</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://ThinkGuess.github.io/favicon.ico?v=1583942606056">
+<link rel="stylesheet" href="https://ThinkGuess.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="在go语言当中，不会改变的数据被称之为常量，通过关键字const来声明。
+常量通常是在编译阶段被创建的，即使在函数中定义的常量也是如此，同时常量的类型只能是布尔型、数字型（整数型、浮点型和复数）和字符串型。
+
+由于编译时的限制，定义常量的表..." />
+    <meta name="keywords" content="go语言常量" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://ThinkGuess.github.io">
+        <img src="https://ThinkGuess.github.io/images/avatar.png?v=1583942606056" class="site-logo">
+        <h1 class="site-title">learnGo</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      记录学习go的每一步
+    </div>
+    <div class="site-footer">
+      Powered by ThinkGuess | <a class="rss" href="https://ThinkGuess.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">go语言之常量</h2>
+            <div class="post-date">2020-03-11</div>
+            
+              <div class="feature-container" style="background-image: url('http://h1.ioliu.cn/bing/DrumhellerBadlands_ZH-CN3069391817_1920x1080.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>在go语言当中，不会改变的数据被称之为常量，通过关键字<code>const</code>来声明。</p>
+<p>常量通常是在编译阶段被创建的，即使在函数中定义的常量也是如此，同时常量的类型只能是布尔型、数字型（整数型、浮点型和复数）和字符串型。</p>
+<!-- more -->
+<p>由于编译时的限制，定义常量的表达式必须为能被编译器求值的常量表达式。</p>
+<h2 id="常量的声明">常量的声明</h2>
+<p>常量的定义语法格式如下:</p>
+<pre><code class="language-go">const name type = value 
+</code></pre>
+<p>例如，下面定义了一个常量:</p>
+<pre><code class="language-go">const mysql_password string = &quot;abc123&quot;
+</code></pre>
+<p>当然，常量的定义也可以和变量一样，省略<code>type</code>类型。编译器会如同编译变量那样来进行数据类型推断。</p>
+<p>例如:</p>
+<pre><code class="language-go">const mysql_user = &quot;root&quot;
+</code></pre>
+<p>如果需要声明一批常量，也可以采用类似于变量的方式进行声明。</p>
+<pre><code class="language-go">const (
+	IP  = &quot;127.0.0.1&quot;
+    pi = 3.1415926
+)
+</code></pre>
+<p>如果在批量声明常量的时候，除了第一个常量的值必须设置以外，其他后面的常量值都可以省略，省略的常量值和第一个常量的值相同。</p>
+<pre><code class="language-go">const (
+	a = 1
+    b
+    c
+    d
+)
+</code></pre>
+<p>在上面的程序中，声明了四个常量，a、b、c、d，四个常量的值都等于1.</p>
+<p>因为常量的值是在编译期间确定的，因此常量可以是构成类型的一部分，例如用于指定数组长度的类型：</p>
+<pre><code class="language-go">const IPv4Len = 4
+// parseIPv4 解析一个 IPv4 地址 (d.d.d.d).
+func parseIPv4(s string) IP {
+    var p [IPv4Len]byte
+    // ...
+}
+</code></pre>
+<h2 id="常量生成器">常量生成器</h2>
+<p>常量声明可以使用 iota 常量生成器初始化，它用于生成一组以相似规则初始化的常量，但是不用每行都写一遍初始化表达式。在一个 const 声明语句中，在第一个声明的常量所在的行，iota 将会被置为 0，然后在每一个有常量声明的行加一。</p>
+<p>例如下面的示例:</p>
+<pre><code class="language-go">const (
+	a = iota 
+    b
+    c
+    d
+)
+</code></pre>
+<p>上面的四个常量的值都是通过<code>iota</code>常量生成器进行的初始化，a的值为0，后面三个常量的值分别递增1.分别为1,2,3 。</p>
+<h3 id="无类型常量">无类型常量</h3>
+<p>在go语言当中，你既可以在声明常量的时候给常量指定类型，也可以不去指定类型。</p>
+<p>在其中，编译器为没有明确基础数据类型的数字常量提供了比基础运算更高精度的算术运算，可以认为至少有256bit的运算精度。</p>
+<h3 id="无类型和有类型的数字常量">无类型和有类型的数字常量</h3>
+<p>在 Go 语言中，你既可以在声明常量时指定类型，也可以不指定类型。当我们在代码中声明一个字面量时，我们其实就声明了一个匿名的、未指定类型的常量。</p>
+<p>下面的例子展示了无类型的、有类型的命名常量和匿名常量：</p>
+<pre><code class="language-go">const a = 12345
+const b = 3.14159
+
+const c int = 12345 
+const d float64 = 3.14159
+</code></pre>
+<p>声明的左边就是命名的常量，而右边的字面量其实是匿名的常量。</p>
+<h3 id="数字常量的种类">数字常量的种类</h3>
+<p>需要知道的是，变量的类型系统和常量的类型系统只是看上去一致，并不是相同的。常量如何表示与他们关联的值，有另外一套实现的方式。</p>
+<p>当我们声明一个指定类型的常量的时候，声明时指定的类型是用来限定那个常量的精度的，它并不会改变常量的值在底层的数据结构，因为内部用什么数据结构来实现变量的值，不同的编译器有不同的实现方法。所以我们最好是认为，常量拥有的是种类（kind），而不是类型（type）</p>
+<p>一个数字常量可以是以下种类之一：整数、浮点数、复数、Unicode 字符（rune）：</p>
+<pre><code class="language-go">12345    // kind: 整型
+3.141592 // kind: 浮点数
+1E6      // kind: 浮点数
+</code></pre>
+<p>在上面的示例中，我们声明了三个数字常量，一个是属于整数种类的，后两个是属于浮点种类的。字面量的形式就决定了它是什么种类的常量。当它的形式不包括小数点或者指数的时候，这个常量就是整数种类的。</p>
+<h3 id="常量完全精确的示例">常量完全精确的示例</h3>
+<p>我们可以声明一个超过int最大范围的值的常量，来说明常量的精度是非常大的。</p>
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+// 远远大于 int64
+const myConst = 9223372036854775808543522345
+
+func main() {
+    fmt.Println(&quot;Will Compile&quot;)
+}
+</code></pre>
+<p>上面的程序可以编译通过，原因在于整数种类的常量完全精确。</p>
+<p>如果我们把上面的常量指定成 <code>int64</code> 类型的，那意思是这个常量的范围已经限定在 <code>int64</code> 的取值范围以内了，这个时候程序不会编译成功：</p>
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+// Much larger value than int64.
+const myConst int64 = 9223372036854775808543522345
+
+func main() {
+    fmt.Println(&quot;Will NOT Compile&quot;)
+}
+
+Compiler Error:
+./ideal.go:6: constant 9223372036854775808543522345 overflows int64
+</code></pre>
+<p>从上面我们可以知道，整数种类的常量可以表示非常大的数字。并且能够理解为什么我们说，常量是完全精确的。</p>
+<h3 id="数字常量的声明">数字常量的声明</h3>
+<p>当我们声明一个无类型的常量的时候，Go对这个常量的值没有任何的要求:</p>
+<pre><code class="language-go">const a = 12345 // 种类：整数
+const b = 3.14159 // 种类：浮点数
+</code></pre>
+<p>上面的示例中，左边的常量被赋予与右边的常量相同的值和种类。</p>
+<p>当我们声明一个有类型的常量的时候，右边的常量的形式必须要与声明的左边的常量的类型兼容：</p>
+<pre><code class="language-go">const a int           = 12345    // 种类：整数
+const b float64 = 3.141592 // 种类：浮点数
+</code></pre>
+<p>声明的右边的值也必须在声明的类型的有效范围内。比如说，下面的数字常量的声明是无效的：</p>
+<pre><code class="language-go">const myUint8 uint8 = 1000
+</code></pre>
+<p><code>uint8</code>只能表示0-255的数字范围，这也是上面我们说，指定的类型就是用来限定常量精度的。</p>
+<h3 id="隐式的整形转换">隐式的整形转换</h3>
+<p>在 Go 的世界中，变量都不会发生隐式的转换。然而，常量与变量之间的隐式类型转换则经常发生。</p>
+<p>我们先来看看隐式的整形转换：</p>
+<pre><code class="language-go">var myInt int = 123
+</code></pre>
+<p>这个示例中，我们有一个整数种类的常量 <code>123</code>，它被隐式地转换成 <code>int</code> 类型。因为这个常量的字面值中没有小数点或者指数，这个常量将会作为一个整数种类的常量。整数种类的常量可以隐式地转换成有符号或者无符号的、任意长度的变量，只要整个过程没有发生数据的溢出。</p>
+<p>浮点数的种类的常量也可以隐式地转换成整型变量，只要这个常量的值的形式是可以兼容整型的：</p>
+<pre><code class="language-go">var myInt int = 123.0
+</code></pre>
+<p>我们还可以进行隐式的常量 - 变量转换时，省略变量的类型指定：</p>
+<pre><code class="language-go">var myInt = 123
+</code></pre>
+<p>在这个例子中，当我们用值为 <code>123</code> 的整数常量来初始化 <code>myInt</code> 变量时，<code>myInt</code> 会隐式地采用默认的 <code>int64</code> 类型。</p>
+<h3 id="隐式的浮点类型转换">隐式的浮点类型转换</h3>
+<p>我们接着来看看隐式的浮点型转换：</p>
+<pre><code class="language-go">var myFloat float64 = 0.333
+</code></pre>
+<p>这时候编译器会执行一个隐式转换，从浮点数种类的常量 <code>0.333</code> 转换为 <code>float64</code> 类型的浮点型变量。因为常量字面值中含有一个小数点，所以这个常量是一个浮点数种类的常量。默认情况下，会把一个浮点数种类的常量转换为 <code>float64</code> 类型的变量。</p>
+<p>编译器还可以把整数类型的常量隐式的转换成为 <code>float64</code> 类型的变量。</p>
+<pre><code class="language-go">var myFloat float64 = 1
+</code></pre>
+<p>在这个示例中，整数常量 <code>1</code> 被隐式地转换成 <code>float64</code> 类型的变量了。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://ThinkGuess.github.io/0MV3sMD8J/" class="tag">
+                    go语言常量
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://ThinkGuess.github.io/go-yu-yan-dang-zhong-shu-ju-lei-xing-zhuan-huan/">
+                  <h3 class="post-title">
+                    go语言当中数据类型转换
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Golang当中如何获取两个时间的差值 | learnGo</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://ThinkGuess.github.io/favicon.ico?v=1583942606056">
+<link rel="stylesheet" href="https://ThinkGuess.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="我们经常需要比较两个时间的差值，在go语言当中，如果想要比较两个时间点的差值，可以采用下面的方式获取。
+我们以当前时间为例，首先来获取当前时间。
+now := time.now() 
+
+然后我们在来设置一下时区，避免因为时区的原因导致计算错..." />
+    <meta name="keywords" content="go,golang,获取时间差值" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://ThinkGuess.github.io">
+        <img src="https://ThinkGuess.github.io/images/avatar.png?v=1583942606056" class="site-logo">
+        <h1 class="site-title">learnGo</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      记录学习go的每一步
+    </div>
+    <div class="site-footer">
+      Powered by ThinkGuess | <a class="rss" href="https://ThinkGuess.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Golang当中如何获取两个时间的差值</h2>
+            <div class="post-date">2020-03-07</div>
+            
+              <div class="feature-container" style="background-image: url('http://h1.ioliu.cn/bing/JoanNYC_ZH-CN1501350561_1920x1080.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>我们经常需要比较两个时间的差值，在go语言当中，如果想要比较两个时间点的差值，可以采用下面的方式获取。</p>
+<p>我们以当前时间为例，首先来获取当前时间。</p>
+<pre><code class="language-go">now := time.now() 
+</code></pre>
+<p>然后我们在来设置一下时区，避免因为时区的原因导致计算错误。</p>
+<pre><code class="language-golang">loc,err := time.LoadLocation(&quot;Asia/Shanghai&quot;)
+if err != nil {
+    fmt.Println(&quot;时区设置错误&quot;,err)
+    return
+}
+</code></pre>
+<p>LoadLocation() 方法会返回一个Location的指针，可以在后面用的到。</p>
+<p>下一步是按照指定格式设置时间。</p>
+<pre><code class="language-golang">timeObj,err := time.ParseInLocation(&quot;2006-01-02 15:04:05&quot;, &quot;2020-03-08 19:36:00&quot;, loc)
+if err != nil {
+    fmt.Println(&quot;解析错误:&quot;,err)
+    return
+}
+</code></pre>
+<blockquote>
+<p>第三个参数就是在上一步获取的Location指针对象。</p>
+</blockquote>
+<p>最后再通过Sub()方法来计算两个时间点相差时间。</p>
+<pre><code class="language-golang">// 计算两个时间的间隔
+ret := timeObj.Sub(now)
+fmt.Println(ret)
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://ThinkGuess.github.io/striAJMnb/" class="tag">
+                    go
+                  </a>
+                
+                  <a href="https://ThinkGuess.github.io/e6rWoZMoS4/" class="tag">
+                    golang
+                  </a>
+                
+                  <a href="https://ThinkGuess.github.io/SYfq4x0Pjd/" class="tag">
+                    获取时间差值
+                  </a>
+                
+              </div>
+            
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>go语言之变量 | learnGo</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://ThinkGuess.github.io/favicon.ico?v=1583942606056">
+<link rel="stylesheet" href="https://ThinkGuess.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="在go语言中，声明一个变量格式如下:
+var varname vartype
+
+varname 表示变量名，vartype表示变量的类型。
+
+例如，下面的代码中创建了两个变量。
+var i1 int
+var s1 string
+fmt.Pr..." />
+    <meta name="keywords" content="go变量,go基础" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://ThinkGuess.github.io">
+        <img src="https://ThinkGuess.github.io/images/avatar.png?v=1583942606056" class="site-logo">
+        <h1 class="site-title">learnGo</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      记录学习go的每一步
+    </div>
+    <div class="site-footer">
+      Powered by ThinkGuess | <a class="rss" href="https://ThinkGuess.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">go语言之变量</h2>
+            <div class="post-date">2020-03-11</div>
+            
+              <div class="feature-container" style="background-image: url('https://ThinkGuess.github.io/post-images/go-yu-yan-zhi-bian-liang.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>在go语言中，声明一个变量格式如下:</p>
+<pre><code class="language-go">var varname vartype
+</code></pre>
+<p>varname 表示变量名，vartype表示变量的类型。</p>
+<!-- more -->
+<p>例如，下面的代码中创建了两个变量。</p>
+<pre><code class="language-go">var i1 int
+var s1 string
+fmt.Printf(&quot;%d %q \n&quot;,i1,s1) // 0 &quot;&quot;
+</code></pre>
+<p>上面的代码中，创建了两个变量i1 和 s1 ，并且还没有初始化。</p>
+<p>在go语言当中，一个变量创建后但是如果没有初始化，那么就会默认的为当前变量类型的零值。例如i1的类型为int,打印出来的结果为int类型的零值0，s1的类型为string，打印出来的结果为string类型的零值&quot;&quot;。</p>
+<p>我们可以在变量声明的时候进行初始化，如下：</p>
+<pre><code class="language-go">var i1 int = 3
+var s1 string = &quot;hello&quot;
+fmt.Println(i1,s1) // 3 hello
+</code></pre>
+<p>上述的代码不仅仅创建了变量，还对变量进行了初始化的设置。</p>
+<p>在go语言当中是支持同时创建多个变量并且同时赋值，如下:</p>
+<pre><code class="language-go">var i1 , i2 int = 3, 4 
+fmt.Println(i1,i2) // 3 4 
+</code></pre>
+<p>上述变量在创建的初期就同时完成了初始化的设置。</p>
+<p>在go中，允许在声明变量的时候不去设置类型，如下：</p>
+<pre><code class="language-go">var i1, s1 = 3 , &quot;hello,world&quot;
+fmt.Println(i1,s1) // 3 hello,world
+</code></pre>
+<p>在上面的代码中，在一个var关键字后面同时创建了两个变量i1和s1，并且同时进行了初始化，但是需要注意的是，两个变量的声明并没有设置类型。<br>
+这种写法在go语言中是允许的，go会自动的根据初始化的值来推断变量的类型。</p>
+<blockquote>
+<p>需要注意的是，如果在创建变量的时候规定了类型，那么不同类型的变量是不能够在一行同时声明的。</p>
+</blockquote>
+<p>在go语言当中还支持更加简洁的写法，如下：</p>
+<pre><code class="language-go">i1,s1 := 2,&quot;hello&quot;
+fmt.Println(i1,s1) // 2 hello
+// 如果重新进行赋值，那么就不能使用:= 需要使用 = 
+s1 = &quot;world&quot;
+fmt.Println(s1) // world
+</code></pre>
+<p>在上面的代码中，创建变量使用的是一种更简洁的变量声明方式，省略了var 关键字和类型，这种写法需要在等号前加上一个: 。<br>
+需要注意的是，当给一个已经声明并且已经初始化的变量进行重新赋值时，是不能够再次使用:= ，而应该使用=。</p>
+<p>在go语言当中，如果在函数外部创建变量，必须要通过var 关键字来创建变量。</p>
+<pre><code class="language-go">var a = 10
+var s = &quot;hello&quot;
+func main() {
+    fmt.Println(a,s) // 10 &quot;hello&quot;
+}
+</code></pre>
+<p>在上述代码中，在main函数的外部创建两a和s两个变量，一定要注意，在函数外部创建变量必须加var，否则没有办法进行编译。</p>
+<p>在go语言当中，还允许我们对变量的声明进行统一批次声明,如下：</p>
+<pre><code class="language-go">var (
+    a = 1 
+    s = &quot;hello&quot;
+)
+</code></pre>
+<p>上面的这种写法一般用来进行批量的声明变量，这种写法无论是在包内还是函数内都是被允许的。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://ThinkGuess.github.io/KfLhEIh5T/" class="tag">
+                    go变量
+                  </a>
+                
+                  <a href="https://ThinkGuess.github.io/H4yUjqk6NS/" class="tag">
+                    go基础
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://ThinkGuess.github.io/go-yu-yan-de-yi-lai-guan-li/">
+                  <h3 class="post-title">
+                    go语言的依赖管理
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

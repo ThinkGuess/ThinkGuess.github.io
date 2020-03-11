@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>go语言当中数据类型转换 | learnGo</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://ThinkGuess.github.io/favicon.ico?v=1583942606056">
+<link rel="stylesheet" href="https://ThinkGuess.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="在一些编程语言里面，存在着隐式类型转换，例如JavaScript。
+var a = 10 
+var b = &quot;a&quot;
+console.log(a + b) // 10a
+
+上面的js代码在执行的时候发生了隐式类型转换，将n..." />
+    <meta name="keywords" content="go数据类型转换" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://ThinkGuess.github.io">
+        <img src="https://ThinkGuess.github.io/images/avatar.png?v=1583942606056" class="site-logo">
+        <h1 class="site-title">learnGo</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      记录学习go的每一步
+    </div>
+    <div class="site-footer">
+      Powered by ThinkGuess | <a class="rss" href="https://ThinkGuess.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">go语言当中数据类型转换</h2>
+            <div class="post-date">2020-03-11</div>
+            
+              <div class="feature-container" style="background-image: url('http://h1.ioliu.cn/bing/CubsEmerge_ZH-CN1697031244_1920x1080.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>在一些编程语言里面，存在着隐式类型转换，例如JavaScript。</p>
+<pre><code class="language-javascript">var a = 10 
+var b = &quot;a&quot;
+console.log(a + b) // 10a
+</code></pre>
+<p>上面的js代码在执行的时候发生了隐式类型转换，将number类型的变量a自动转换为了字符串，和字符串类型的b执行相加后，发生了字符串的拼接。</p>
+<p>但是这种隐式的类型转换，在go语言当中是不存在的。</p>
+<!-- more -->
+<p>go必要的情况下，允许将一个类型的值转换为另外一个类型的值。但是所有的类型转换都必须显示的声明出来。</p>
+<p>示例:</p>
+<pre><code class="language-go">valTypeB = TypeB(valTypeA)
+</code></pre>
+<p>类型B的值 = 类型B(类型A的值)</p>
+<p>例如下面的例子：</p>
+<pre><code class="language-go">// 定义一个变量
+var s1 string = &quot;hello,world&quot;
+var a = []byte(s1) // 将字符串转换为数组
+var n1 float64 = 1.0
+var b int = int(n1) // 将float64转换为整型
+</code></pre>
+<p>类型转换只能在定义正确的情况下转换成功，例如从一个取值范围较小的类型转换到一个取值范围较大的类型（将 int16 转换为 int32）。当从一个取值范围较大的类型转换到取值范围较小的类型时（将 int32 转换为 int16 或将 float32 转换为 int），会发生精度丢失（截断）的情况。</p>
+<p>只有相同底层类型的变量之间可以进行相互转换（如将 int16 类型转换成 int32 类型），不同底层类型的变量相互转换时会引发编译错误（如将 bool 类型转换为 int 类型）：</p>
+<pre><code class="language-go">// int 32 最大值：2147483647
+var n1 int64 = 2147483648
+var n2 int32 = int32(n1)
+fmt.Println(n2) // -2147483648
+</code></pre>
+<pre><code class="language-go">// 底层不同的数据进行转换
+var b1 bool = true
+var n1 int = int(b1)
+fmt.Println(n1) // cannot convert b1 (type bool) to type int
+
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://ThinkGuess.github.io/EgC3WbpQB/" class="tag">
+                    go数据类型转换
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://ThinkGuess.github.io/go-nei-jian-bian-liang-lei-xing/">
+                  <h3 class="post-title">
+                    go内建变量类型
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>

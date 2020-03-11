@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>go语言的依赖管理 | learnGo</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://ThinkGuess.github.io/favicon.ico?v=1583942606056">
+<link rel="stylesheet" href="https://ThinkGuess.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="当我们在进行go的开发的时候，往往需要很多的第三方的包，通过使用第三方的包来提高我们的开发速度，当我们最后在go build后，会将这些包打包到一起。
+经过这么多年的发展，go的依赖管理经历了如下的几个阶段：
+
+
+GOPATH
+GOVEND..." />
+    <meta name="keywords" content="GOPATH,GOVENDOR,go mod,go依赖管理,go项目迁移" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://ThinkGuess.github.io">
+        <img src="https://ThinkGuess.github.io/images/avatar.png?v=1583942606056" class="site-logo">
+        <h1 class="site-title">learnGo</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      记录学习go的每一步
+    </div>
+    <div class="site-footer">
+      Powered by ThinkGuess | <a class="rss" href="https://ThinkGuess.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">go语言的依赖管理</h2>
+            <div class="post-date">2020-03-10</div>
+            
+              <div class="feature-container" style="background-image: url('https://myblogxingzhou.oss-cn-qingdao.aliyuncs.com/golang-1200x675.png')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>当我们在进行go的开发的时候，往往需要很多的第三方的包，通过使用第三方的包来提高我们的开发速度，当我们最后在<code>go build</code>后，会将这些包打包到一起。</p>
+<p>经过这么多年的发展，go的依赖管理经历了如下的几个阶段：</p>
+<!-- more -->
+<ul>
+<li>GOPATH</li>
+<li>GOVENDOR</li>
+<li>go mod</li>
+</ul>
+<p>最开始的go依赖管理，无论是GOPATH,还是GOVENDOR,在使用的过程中体验都不是很好，直到2018年年底，go 1.11 版本中将依赖管理放进了go的命令中。从18年到现在为止，go又不断的对其进行完善，在github中也可以看到非常多的包都在向go mod当中进行迁移。</p>
+<p>下面会对三种方案进行一定的介绍说明。</p>
+<h2 id="gopath">GOPATH</h2>
+<p>在windows当中，GOPATH默认在 %USERPROFILE%\go 当中，在linux或者unix中，默认在<code>~/go</code>当中。</p>
+<p>在GOPATH的阶段，go并没有对依赖有什么强制的管理，只需要你设置GOPATH,那么当程序需要什么依赖的时候就会默认的去GOPATH下去找。</p>
+<p>那么这样设置的问题就在于，所有的项目和包都放在GOPATH目录下，这样就会导致文件越来越大。</p>
+<blockquote>
+<p>如果想要使用GOPATH.需要关闭go mod,可以执行<code>go env -w GO111MODULE=off</code>指令来关闭go mod。如果仅仅是关闭一个项目的go mod ，可以在项目的目录下开启终端，执行<code>export GO111MODULE=off</code>(unix或者linux)。</p>
+</blockquote>
+<h2 id="govendor">GOVENDOR</h2>
+<p>如果采用GOPATH的形式进行开发，假设在一个GOPATH目录下包含多个项目，那么在包的版本控制和使用上存在很大的问题，所以后来就出现了GOVENDOR。</p>
+<p>在每个项目的目录下创建一个vendor目录，用来存储第三方库。这种做法在一定程度上解决了包的依赖管理问题。因为GOVENDOR的存在，所以也诞生了很多第三方的依赖管理工具，例如glide、dep、go dep......</p>
+<h2 id="go-mod">go mod</h2>
+<p>在go 1.11版本之后，go推出了go mod，通过go mod ，可以自由的在任意的位置进行项目的开发，并且有着非常良好的依赖管理。</p>
+<p>下面来说下如何使用go mod。</p>
+<p>首先在创建项目的时候，选择go mod模式。</p>
+<figure data-type="image" tabindex="1"><img src="https://myblogxingzhou.oss-cn-qingdao.aliyuncs.com/20200311094846.png" alt="" loading="lazy"></figure>
+<p>在指定位置创建一个<code>gomodtest</code>项目，创建完成后，会在项目的目录存在一个go.mod文件。</p>
+<figure data-type="image" tabindex="2"><img src="https://myblogxingzhou.oss-cn-qingdao.aliyuncs.com/20200311095250.png" alt="" loading="lazy"></figure>
+<p>后续所有的依赖都会记录在这个go mod文件中。</p>
+<p>下面我们可以尝试着下载一个包来进行测试。</p>
+<pre><code class="language-go">go get -u go.uber.org/zap
+</code></pre>
+<p>在ide当中执行上述命令。</p>
+<figure data-type="image" tabindex="3"><img src="https://myblogxingzhou.oss-cn-qingdao.aliyuncs.com/20200311095612.png" alt="" loading="lazy"></figure>
+<p>安装完成后，go mod当中会增加如下内容:</p>
+<figure data-type="image" tabindex="4"><img src="https://myblogxingzhou.oss-cn-qingdao.aliyuncs.com/20200311095846.png" alt="" loading="lazy"></figure>
+<p>在go mod当中每一个包的后面都带有版本，如果想要下载其他的版本可以在go get的时候指定版本，如果不加版本号的话会默认下载最新版本。</p>
+<p>下面来进行测试，将zap包变为1.11 (当前的最新版本为1.14)。</p>
+<p>在终端执行：</p>
+<pre><code class="language-go">go get -u go.uber.org/zap@v1.11
+</code></pre>
+<figure data-type="image" tabindex="5"><img src="https://myblogxingzhou.oss-cn-qingdao.aliyuncs.com/20200311100614.png" alt="" loading="lazy"></figure>
+<p>下载完成后go mod当中自动更新了zap包的版本。</p>
+<figure data-type="image" tabindex="6"><img src="https://myblogxingzhou.oss-cn-qingdao.aliyuncs.com/20200311100658.png" alt="" loading="lazy"></figure>
+<p>当我们进行了一个包的版本切换后，在go mod当中对于之前的包的记录仍然存在于go sum这个文件当中。</p>
+<figure data-type="image" tabindex="7"><img src="https://myblogxingzhou.oss-cn-qingdao.aliyuncs.com/20200311100954.png" alt="" loading="lazy"></figure>
+<p>我们可以通过下面的命令清除这些记录。</p>
+<pre><code class="language-go">go mod tidy
+</code></pre>
+<p>这样就可以清除之前的记录(如果引入的包没有使用，那么执行上面的这条命令会将go mod当中包的依赖给清除掉。)</p>
+<p>接下来我们来写一段代码看一下其他的内容。</p>
+<p>创建一个<code>zaptest.go</code>文件，内容如下:</p>
+<pre><code class="language-go">package main
+
+import &quot;go.uber.org/zap&quot;
+
+func main() {
+	logger,_ := zap.NewProduction()
+	logger.Warn(&quot;这是一段测试&quot;)
+}
+</code></pre>
+<p>上面这段代码是一段简单的测试代码，如果你用的是<code>goland</code>或者<code>idea</code>，可以按住commend键点击代码当中的NewProduction，来查看一下这个包的源码。</p>
+<p>进入源码后，我们可以看到这个包的位置。</p>
+<figure data-type="image" tabindex="8"><img src="https://myblogxingzhou.oss-cn-qingdao.aliyuncs.com/20200311102043.png" alt="" loading="lazy"></figure>
+<p>通过编辑器的地址提示信息，我们可以非常清晰的看到，没有通过GOPATH下载的包，被默认的安装在了默认的GOPATH地址下的pkg目录下。</p>
+<p>如果想要在开发中升级某个包的版本，可以直接通过go get命令进行升级，而不用担心代码中版本的问题，因为go mod会自动的将你的版本切换成新的版本。</p>
+<h2 id="将go的旧项目迁移到go的新项目">将go的旧项目迁移到go的新项目</h2>
+<p>在go推出了go mod后，如果需要将旧的项目迁移到新版本go的环境下，也非常简单，在go项目的根目录下，打开终端执行下面的命令：</p>
+<pre><code class="language-go">go mod init 项目的名字
+go build ./...
+</code></pre>
+<p>上面的两条命令执行完毕后就会将整个项目所有的代码中用到的包写入到go mod文件中。如果在之前的项目中使用的是GOVENDOR，那么上述的两条命令就会读取<code>glide.yaml</code>这个配置文件中的内容，将其中的内容转写到go mod当中。执行完毕之后就可以将vendor目录和glide.yaml这两个文件删除。</p>
+<h2 id="总结">总结</h2>
+<ul>
+<li>通过go mod，依赖由go命令统一管理，用户不必关心目录结构</li>
+<li>初始化 go mod init</li>
+<li>增加依赖 go get</li>
+<li>更新依赖 go get [@v...],go mod tidy</li>
+<li>将旧的项目迁移到go mod: go mod init , go build ./...</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://ThinkGuess.github.io/OsVRkuPf5/" class="tag">
+                    GOPATH
+                  </a>
+                
+                  <a href="https://ThinkGuess.github.io/WdWCRtQ0X_/" class="tag">
+                    GOVENDOR
+                  </a>
+                
+                  <a href="https://ThinkGuess.github.io/pbF3Xq75gk/" class="tag">
+                    go mod
+                  </a>
+                
+                  <a href="https://ThinkGuess.github.io/WVIQmlNfF2/" class="tag">
+                    go依赖管理
+                  </a>
+                
+                  <a href="https://ThinkGuess.github.io/XgXB4Fr8cy/" class="tag">
+                    go项目迁移
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://ThinkGuess.github.io/go-she-zhi-proxy/">
+                  <h3 class="post-title">
+                    go 设置proxy
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
+  </body>
+</html>
