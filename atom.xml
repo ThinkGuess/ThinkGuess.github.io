@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ThinkGuess.github.io</id>
     <title>learnGo</title>
-    <updated>2020-03-10T08:35:24.487Z</updated>
+    <updated>2020-03-11T02:52:48.536Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ThinkGuess.github.io"/>
     <link rel="self" href="https://ThinkGuess.github.io/atom.xml"/>
@@ -10,6 +10,19 @@
     <logo>https://ThinkGuess.github.io/images/avatar.png</logo>
     <icon>https://ThinkGuess.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, learnGo</rights>
+    <entry>
+        <title type="html"><![CDATA[go语言的依赖管理]]></title>
+        <id>https://ThinkGuess.github.io/post/go-yu-yan-de-yi-lai-guan-li/</id>
+        <link href="https://ThinkGuess.github.io/post/go-yu-yan-de-yi-lai-guan-li/">
+        </link>
+        <updated>2020-03-10T08:38:41.000Z</updated>
+        <summary type="html"><![CDATA[<p>当我们在进行go的开发的时候，往往需要很多的第三方的包，通过使用第三方的包来提高我们的开发速度，当我们最后在<code>go build</code>后，会将这些包打包到一起。</p>
+<p>经过这么多年的发展，go的依赖管理经历了如下的几个阶段：</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>当我们在进行go的开发的时候，往往需要很多的第三方的包，通过使用第三方的包来提高我们的开发速度，当我们最后在<code>go build</code>后，会将这些包打包到一起。</p>
+<p>经过这么多年的发展，go的依赖管理经历了如下的几个阶段：</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[go 设置proxy]]></title>
         <id>https://ThinkGuess.github.io/post/go-she-zhi-proxy/</id>
