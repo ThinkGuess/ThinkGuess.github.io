@@ -1,151 +1,164 @@
-<!DOCTYPE html>
+
 <html>
   <head>
-    <meta charset="utf-8" >
+    
+<meta charset="utf-8" >
 
 <title>learnGo</title>
+<meta name="description" content="记录学习go的每一步">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://ThinkGuess.github.io/favicon.ico?v=1583942773581">
+<link rel="shortcut icon" href="https://ThinkGuess.github.io/favicon.ico?v=1583942900165">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://ThinkGuess.github.io/styles/main.css">
 
 
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 
 
-    <meta name="description" content="记录学习go的每一步">
-    
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    
   </head>
   <body>
     <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://ThinkGuess.github.io">
-        <img src="https://ThinkGuess.github.io/images/avatar.png?v=1583942773581" class="site-logo">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://ThinkGuess.github.io">
+        <img class="avatar" src="https://ThinkGuess.github.io/images/avatar.png?v=1583942900165" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://ThinkGuess.github.io">
         <h1 class="site-title">learnGo</h1>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
     </div>
-    <div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
       
         
-          <a href="/" class="site-nav">
+          <a href="/" class="menu purple-link">
             首页
           </a>
         
       
         
-          <a href="/archives" class="site-nav">
+          <a href="/archives" class="menu purple-link">
             归档
           </a>
         
       
         
-          <a href="/tags" class="site-nav">
+          <a href="/tags" class="menu purple-link">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="site-nav">
+          <a href="/post/about" class="menu purple-link">
             关于
           </a>
         
       
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      记录学习go的每一步
-    </div>
-    <div class="site-footer">
-      Powered by ThinkGuess | <a class="rss" href="https://ThinkGuess.github.io/atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
+</transition>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://ThinkGuess.github.io/go-yu-yan-zhi-han-shu/">
-                  <h2 class="post-title">go语言之函数</h2>
-                </a>
-                <div class="post-date">
-                  2020-03-11
-                </div>
-                <div class="post-abstract">
-                  <p>一般来说，函数是组织好的、可以重复使用、用来实现单一功能或者相互关联功能的代码段，可以提高应用的模块性以及代码的复用性。</p>
+      <div class="content-container">
+        
+        
+<section class="post-item">
+    <div class="content">
+      <a href="https://ThinkGuess.github.io/go-yu-yan-zhi-han-shu/">
+        <h2 class="post-title">go语言之函数</h2>
+      </a>
+      <div class="post-abstract">
+        <p>一般来说，函数是组织好的、可以重复使用、用来实现单一功能或者相互关联功能的代码段，可以提高应用的模块性以及代码的复用性。</p>
 <p>在go语言当中支持普通函数、匿名函数以及闭包函数。从设计上对函数进行了优化和改进，从而让函数使用起来更加的方便。</p>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://ThinkGuess.github.io/go-yu-yan-zhi-han-shu/">
-                  <div class="feature-container" style="background-image: url('http://h1.ioliu.cn/bing/BluebirdsYNP_ZH-CN1355093185_1920x1080.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://ThinkGuess.github.io/go-yu-yan-zhi-chang-liang/">
-                  <h2 class="post-title">go语言之常量</h2>
-                </a>
-                <div class="post-date">
-                  2020-03-11
-                </div>
-                <div class="post-abstract">
-                  <p>在go语言当中，不会改变的数据被称之为常量，通过关键字<code>const</code>来声明。</p>
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2020-03-11</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://ThinkGuess.github.io/n3sP_T2QT/">
+                go函数
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://ThinkGuess.github.io/73ZyM1MYYI/">
+                匿名函数
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://ThinkGuess.github.io/go-yu-yan-zhi-han-shu/">
+        <div class="feature-container" style="background-image: url('http://h1.ioliu.cn/bing/BluebirdsYNP_ZH-CN1355093185_1920x1080.jpg')">
+        </div>
+      </a>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://ThinkGuess.github.io/go-yu-yan-zhi-chang-liang/">
+        <h2 class="post-title">go语言之常量</h2>
+      </a>
+      <div class="post-abstract">
+        <p>在go语言当中，不会改变的数据被称之为常量，通过关键字<code>const</code>来声明。</p>
 <p>常量通常是在编译阶段被创建的，即使在函数中定义的常量也是如此，同时常量的类型只能是布尔型、数字型（整数型、浮点型和复数）和字符串型。</p>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://ThinkGuess.github.io/go-yu-yan-zhi-chang-liang/">
-                  <div class="feature-container" style="background-image: url('http://h1.ioliu.cn/bing/DrumhellerBadlands_ZH-CN3069391817_1920x1080.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://ThinkGuess.github.io/go-yu-yan-dang-zhong-shu-ju-lei-xing-zhuan-huan/">
-                  <h2 class="post-title">go语言当中数据类型转换</h2>
-                </a>
-                <div class="post-date">
-                  2020-03-11
-                </div>
-                <div class="post-abstract">
-                  <p>在一些编程语言里面，存在着隐式类型转换，例如JavaScript。</p>
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2020-03-11</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://ThinkGuess.github.io/0MV3sMD8J/">
+                go语言常量
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://ThinkGuess.github.io/go-yu-yan-zhi-chang-liang/">
+        <div class="feature-container" style="background-image: url('http://h1.ioliu.cn/bing/DrumhellerBadlands_ZH-CN3069391817_1920x1080.jpg')">
+        </div>
+      </a>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://ThinkGuess.github.io/go-yu-yan-dang-zhong-shu-ju-lei-xing-zhuan-huan/">
+        <h2 class="post-title">go语言当中数据类型转换</h2>
+      </a>
+      <div class="post-abstract">
+        <p>在一些编程语言里面，存在着隐式类型转换，例如JavaScript。</p>
 <pre><code class="language-javascript">var a = 10 
 var b = &quot;a&quot;
 console.log(a + b) // 10a
@@ -153,139 +166,317 @@ console.log(a + b) // 10a
 <p>上面的js代码在执行的时候发生了隐式类型转换，将number类型的变量a自动转换为了字符串，和字符串类型的b执行相加后，发生了字符串的拼接。</p>
 <p>但是这种隐式的类型转换，在go语言当中是不存在的。</p>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://ThinkGuess.github.io/go-yu-yan-dang-zhong-shu-ju-lei-xing-zhuan-huan/">
-                  <div class="feature-container" style="background-image: url('http://h1.ioliu.cn/bing/CubsEmerge_ZH-CN1697031244_1920x1080.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://ThinkGuess.github.io/go-nei-jian-bian-liang-lei-xing/">
-                  <h2 class="post-title">go内建变量类型</h2>
-                </a>
-                <div class="post-date">
-                  2020-03-11
-                </div>
-                <div class="post-abstract">
-                  <p>在go语言当中，存在着很多的内建变量类型，下面来具体说明。</p>
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2020-03-11</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://ThinkGuess.github.io/EgC3WbpQB/">
+                go数据类型转换
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://ThinkGuess.github.io/go-yu-yan-dang-zhong-shu-ju-lei-xing-zhuan-huan/">
+        <div class="feature-container" style="background-image: url('http://h1.ioliu.cn/bing/CubsEmerge_ZH-CN1697031244_1920x1080.jpg')">
+        </div>
+      </a>
+    
+  </section>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://ThinkGuess.github.io/go-nei-jian-bian-liang-lei-xing/">
-                  <div class="feature-container" style="background-image: url('https://ThinkGuess.github.io/post-images/go-nei-jian-bian-liang-lei-xing.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://ThinkGuess.github.io/go-yu-yan-zhi-bian-liang/">
-                  <h2 class="post-title">go语言之变量</h2>
-                </a>
-                <div class="post-date">
-                  2020-03-11
-                </div>
-                <div class="post-abstract">
-                  <p>在go语言中，声明一个变量格式如下:</p>
+<section class="post-item">
+    <div class="content">
+      <a href="https://ThinkGuess.github.io/go-nei-jian-bian-liang-lei-xing/">
+        <h2 class="post-title">go内建变量类型</h2>
+      </a>
+      <div class="post-abstract">
+        <p>在go语言当中，存在着很多的内建变量类型，下面来具体说明。</p>
+
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2020-03-11</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://ThinkGuess.github.io/HkTM3pwPL/">
+                go数据类型
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://ThinkGuess.github.io/GA8tGAKnhK/">
+                go字符串
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://ThinkGuess.github.io/zPmTc5a6Ut/">
+                go布尔值
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://ThinkGuess.github.io/rt59t4cQH2/">
+                go浮点数
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://ThinkGuess.github.io/C8DjoL7exs/">
+                golang基础语法
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://ThinkGuess.github.io/go-nei-jian-bian-liang-lei-xing/">
+        <div class="feature-container" style="background-image: url('https://ThinkGuess.github.io/post-images/go-nei-jian-bian-liang-lei-xing.jpg')">
+        </div>
+      </a>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://ThinkGuess.github.io/go-yu-yan-zhi-bian-liang/">
+        <h2 class="post-title">go语言之变量</h2>
+      </a>
+      <div class="post-abstract">
+        <p>在go语言中，声明一个变量格式如下:</p>
 <pre><code class="language-go">var varname vartype
 </code></pre>
 <p>varname 表示变量名，vartype表示变量的类型。</p>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://ThinkGuess.github.io/go-yu-yan-zhi-bian-liang/">
-                  <div class="feature-container" style="background-image: url('https://ThinkGuess.github.io/post-images/go-yu-yan-zhi-bian-liang.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://ThinkGuess.github.io/go-yu-yan-de-yi-lai-guan-li/">
-                  <h2 class="post-title">go语言的依赖管理</h2>
-                </a>
-                <div class="post-date">
-                  2020-03-10
-                </div>
-                <div class="post-abstract">
-                  <p>当我们在进行go的开发的时候，往往需要很多的第三方的包，通过使用第三方的包来提高我们的开发速度，当我们最后在<code>go build</code>后，会将这些包打包到一起。</p>
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2020-03-11</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://ThinkGuess.github.io/KfLhEIh5T/">
+                go变量
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://ThinkGuess.github.io/H4yUjqk6NS/">
+                go基础
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://ThinkGuess.github.io/go-yu-yan-zhi-bian-liang/">
+        <div class="feature-container" style="background-image: url('https://ThinkGuess.github.io/post-images/go-yu-yan-zhi-bian-liang.jpg')">
+        </div>
+      </a>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://ThinkGuess.github.io/go-yu-yan-de-yi-lai-guan-li/">
+        <h2 class="post-title">go语言的依赖管理</h2>
+      </a>
+      <div class="post-abstract">
+        <p>当我们在进行go的开发的时候，往往需要很多的第三方的包，通过使用第三方的包来提高我们的开发速度，当我们最后在<code>go build</code>后，会将这些包打包到一起。</p>
 <p>经过这么多年的发展，go的依赖管理经历了如下的几个阶段：</p>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://ThinkGuess.github.io/go-yu-yan-de-yi-lai-guan-li/">
-                  <div class="feature-container" style="background-image: url('https://myblogxingzhou.oss-cn-qingdao.aliyuncs.com/golang-1200x675.png')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://ThinkGuess.github.io/go-she-zhi-proxy/">
-                  <h2 class="post-title">go 设置proxy</h2>
-                </a>
-                <div class="post-date">
-                  2020-03-10
-                </div>
-                <div class="post-abstract">
-                  <p>在新版本的go当中，引入了<code>proxy</code>的概念，通过这个代理，可以帮助我们解决go包下载的问题。</p>
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2020-03-10</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://ThinkGuess.github.io/OsVRkuPf5/">
+                GOPATH
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://ThinkGuess.github.io/WdWCRtQ0X_/">
+                GOVENDOR
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://ThinkGuess.github.io/pbF3Xq75gk/">
+                go mod
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://ThinkGuess.github.io/WVIQmlNfF2/">
+                go依赖管理
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://ThinkGuess.github.io/XgXB4Fr8cy/">
+                go项目迁移
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://ThinkGuess.github.io/go-yu-yan-de-yi-lai-guan-li/">
+        <div class="feature-container" style="background-image: url('https://myblogxingzhou.oss-cn-qingdao.aliyuncs.com/golang-1200x675.png')">
+        </div>
+      </a>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://ThinkGuess.github.io/go-she-zhi-proxy/">
+        <h2 class="post-title">go 设置proxy</h2>
+      </a>
+      <div class="post-abstract">
+        <p>在新版本的go当中，引入了<code>proxy</code>的概念，通过这个代理，可以帮助我们解决go包下载的问题。</p>
 <p>例如在未设置前，如果想要通过vscode来安装go需要的包，是非常麻烦的，但是现在有了proxy之后，可以非常方便的来下载相应的内容。</p>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://ThinkGuess.github.io/go-she-zhi-proxy/">
-                  <div class="feature-container" style="background-image: url('https://ThinkGuess.github.io/post-images/go-she-zhi-proxy.jpeg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://ThinkGuess.github.io/golang-dang-zhong-ru-he-huo-qu-liang-ge-shi-jian-de-chai-zhi/">
-                  <h2 class="post-title">Golang当中如何获取两个时间的差值</h2>
-                </a>
-                <div class="post-date">
-                  2020-03-07
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-                <a class="right" href="https://ThinkGuess.github.io/golang-dang-zhong-ru-he-huo-qu-liang-ge-shi-jian-de-chai-zhi/">
-                  <div class="feature-container" style="background-image: url('http://h1.ioliu.cn/bing/JoanNYC_ZH-CN1501350561_1920x1080.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2020-03-10</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://ThinkGuess.github.io/X6hy0DqMW/">
+                go proxy
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://ThinkGuess.github.io/EQknKw8H0s/">
+                go环境配置
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://ThinkGuess.github.io/AOn4kkVIDH/">
+                代理
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://ThinkGuess.github.io/go-she-zhi-proxy/">
+        <div class="feature-container" style="background-image: url('https://ThinkGuess.github.io/post-images/go-she-zhi-proxy.jpeg')">
+        </div>
+      </a>
+    
+  </section>
 
-          <div class="pagination-container">
+<section class="post-item">
+    <div class="content">
+      <a href="https://ThinkGuess.github.io/golang-dang-zhong-ru-he-huo-qu-liang-ge-shi-jian-de-chai-zhi/">
+        <h2 class="post-title">Golang当中如何获取两个时间的差值</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2020-03-07</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://ThinkGuess.github.io/striAJMnb/">
+                go
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://ThinkGuess.github.io/e6rWoZMoS4/">
+                golang
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://ThinkGuess.github.io/SYfq4x0Pjd/">
+                获取时间差值
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://ThinkGuess.github.io/golang-dang-zhong-ru-he-huo-qu-liang-ge-shi-jian-de-chai-zhi/">
+        <div class="feature-container" style="background-image: url('http://h1.ioliu.cn/bing/JoanNYC_ZH-CN1501350561_1920x1080.jpg')">
+        </div>
+      </a>
+    
+  </section>
+
+
+<div class="pagination-container">
   
   
 </div>
 
-        </div>
+
       </div>
+
+      <div class="site-footer">
+  <div class="slogan">记录学习go的每一步</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by ThinkGuess | <a class="rss" href="https://ThinkGuess.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
     </div>
+    <script type="application/javascript">
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script type="application/javascript">
-
-AOS.init();
+hljs.initHighlightingOnLoad()
 
 var app = new Vue({
   el: '#app',
@@ -295,13 +486,6 @@ var app = new Vue({
 })
 
 </script>
-
-
-  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>
-    hljs.initHighlightingOnLoad()
-  </script>
-
 
 
 
